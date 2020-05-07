@@ -1,183 +1,529 @@
-<div class="hp-wrapper">
-  <div class="hs-store-sec1">
-    <div class="container">
-      <div class="hs-sec1-slider">
-        <ul class="hs-sec1-image-slider">{% for image in product.images %}
-          <li {% for variant in image.variants %}data-variant="{{ variant.title | split: ' / ' | first }}"{% endfor %}><div class="hs-sec1-image-item"><img src="{{ image | img_url: 'original' }}"></div></li>{% endfor %}
-        </ul>
-      </div>
-      <div class="hs-product-info">{% assign product_title1 = product.title | split: ' ' | first %}{% assign product_title2 = product.title | split: ' ' | last %}
-        <h1>{{product_title1}} Oxford {{product_title2}}</h1>
-        <div id="productprice" class="">{{ product.price | money }}</div>
-        {%- form 'product', product, class:'product-form' -%}
-        <div class="hs-select-item">
-          {%- for option in product.options -%}{%- if option == 'Farve' -%}{%- include 'swatch' with option -%}{%- endif -%}{%- endfor -%}
-          <select name="id" id="productSelect" style="display:none;">{%- for variant in product.variants -%}{%- if variant.available -%}<option{% if variant == product.selected_or_first_available_variant %} selected="selected"{% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>{%- else -%}<option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>{%- endif -%}{%- endfor -%}</select>
-          <p class="sizechart"><a href="https://haraldstone.myshopify.com/pages/size-guide">Min størrelse?</a></p>
-        </div>
-        <button trpe="submit" class="hs-size-button">
-          <span class="hs-button-label">
-            Tilføj til indkøbskurven
-          </span>
-        </button>
-        {%- endform -%}
-<!--         <p class="hs-shipping-usp">
-          Express Home Delivery - Free over €200
-        </p> -->
-        <div class="hp-tab-area">
-          <div class="hs-tabs-title">
-            <button class="w3-bar-item w3-button" onclick="openCity('Detail')">Detaljer</button>
-            <button class="w3-bar-item w3-button" onclick="openCity('Fit')">Størrelse og Fit</button>
-            <button class="w3-bar-item w3-button" onclick="openCity('Care')">Vaskeanvisninger</button>
-          </div>
-         
-          <div id="Detail" class="hs-tab-content city">
-            <p>
-              {{product.description}}
-            </p>
-          </div>
-          <div id="Fit" class="hs-tab-content city" style="display:none">
-            <p>
-              Model er 180 cm høj og vejer 85kg og har en størrelse M på.Vi gør opmærksom på at bomuld skjorter kan skrumpe 2-3% grunden det har vi lavet skjorten lidt større.
-            </p>
-          </div>
-          <div id="Care" class="hs-tab-content city" style="display:none">
-            <p>
-              <li>Vask på 40°C </li><li>Hæng til tørre.</li><li>Stryg skjorten på medium temperatur.</li>
-            </p>
-          </div>
-        </div>
-<!--         <div class="hs-model-wearing">
-          <span class="hs-wearing-title">Model also wearing</span>
-          <ul>
-            <li>
-              <a href="#">
-                <img src="https://cdn.shopify.com/s/files/1/0105/1810/2071/files/luxury.png" width="36px">
-                <span>zip jacket 2</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <img src="https://cdn.shopify.com/s/files/1/0105/1810/2071/files/luxury.png" width="36px">
-                <span>zip jacket 2</span>
-              </a>
-            </li>
-             <li>
-              <a href="#">
-                <img src="https://cdn.shopify.com/s/files/1/0105/1810/2071/files/luxury.png" width="36px">
-                <span>zip jacket 2</span>
-              </a>
-            </li>
-          </ul>
-        </div> -->
+<section>
+  <video playsinline="playsinline" style="width:100%;background-size:cover;" autoplay="autoplay" muted="muted" loop="loop">
+    <source src="{{section.settings.video}}" type="video/mp4">
+  </video>
+</section>
+<section id="hero" class="" style="margin-top:-5vh;">
+  <div class="container">
+    <div class="row align-items-center" style="height: 100vh;">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"></div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-white">
+        <h5>{{section.settings.sub}}</h5>
+        <h1>{{section.settings.head}}</h1>
+        <p style="text-align:justify;">{{section.settings.para}}</p>
+        <button class="btn btn-outline-light">{{section.settings.btn_txt}}</button>
       </div>
     </div>
   </div>
-  <div class="hs-store-sec3">
-          <div class="hs-container">
-            
-<!--             <div class="hs-sec3-text">
-              <h2>Engineered in Portugal</h2>
-              <p>
-                The Sweatshirt is cut from a custom developed, unbrushed loopback fabric made of 100% Egyptian cotton fibers. The outside is densely knitted for a smooth hand and straight fall. The inside loopback is unbrushed to provide comfort and warmth without becoming heavy or bulky. For the neckline, cuffs and bottom, we've developed a lycra-reinforced rib-knit that provides stretch without losing shape.
-              </p>
-            </div> -->
-            <div class="hs-store-sec4">
-          <div class="hs-container">
-            <h2>Detaljer om skjorten</h2>
-            <ul>
-              <li>
-                <a href="#">
-                  <div class="hs-sec4-image">
-                    <img src="https://cdn.shopify.com/s/files/1/0105/1810/2071/files/2.jpg">
-                  </div>
-                  <div class="hs-sec4-text">
-                    <h3>Skjorten</h3>
-                    <p>
-                      Vores skjorte har fået en tekstilbehandling, der gør, at skjorten holder sig mere frisk i løbet af dagen. Teknologien, vi benytter, er Bluesign og OEKO-TEX Standard 100 Verificeret. Dette forsikrer, at den ikke har en skadelig påvirkning på hverken din hud eller miljøet.
-                    </p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="hs-sec4-image">
-                    <img src="https://cdn.shopify.com/s/files/1/0105/1810/2071/files/1.jpg"> 
-                  </div>
-                  <div class="hs-sec4-text">
-                    <h3>Bomulden</h3>
-                    <p>
-                      Alle gode skjorter starter med bomulden. Vi har valgt en meget lækker og blød bomuldskvalitet, som også er meget behagelig for huden. Vores bomuld er behandlet med Sanitized®, der bevirker, at skjorten holder sig lugtfri
-                    </p>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="hs-sec4-image">
-                    <img src="https://cdn.shopify.com/s/files/1/0105/1810/2071/files/3_4a4b8f5a-199a-4bd9-a3fa-13ecfffb8a09.jpg">
-                  </div>
-                  <div class="hs-sec4-text">
-                    <h3>Ascolite®</h3>
-                    <p>
-                      Vi ved, hvor frustrerende det kan være at miste en knap. Derfor er vores knapper syet med Ascolite®. Ved hjælp af en grundig proces bestående af varmebehandling kommer knapperne til at sidde fast uden at falde af.
-                    </p>
-                  </div>
-                </a>
-              </li>
-            </ul>
+</section>
+<section class="bg-light">
+  <div class="container">
+    <div class="row align-items-center" style="padding-top:30px;padding-bottom:30px;">
+      <div class="col-lg-3 col-sm-12 col-md-6 col-xs-12"> 
+        <img src="{{section.settings.img1 | img_url:'master'}}" class="mr-2" alt=""><span>{{section.settings.span_txt1}}</span>
+      </div>
+      <div class="col-lg-3 col-sm-12 col-md-6 col-xs-12">
+        <img src="{{section.settings.img2 | img_url:'master'}}" class="mr-2" alt=""><span>{{section.settings.span_txt2}}</span>
+      </div> 
+      <div class="col-lg-3 col-sm-12 col-md-6 col-xs-12">
+        <img src="{{section.settings.img3 | img_url:'master'}}" class="mr-2" alt=""><span>{{section.settings.span_txt3}}</span>
+      </div>
+      <div class="col-lg-3 col-sm-12 col-md-6 col-xs-12">
+        <img src="{{section.settings.img4 | img_url:'master'}}" class="mr-2" alt=""><span>{{section.settings.span_txt4}}</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-white">
+  <div class="container">
+    <div class="row align-items-center" style="margin-top:30px;margin-bottom:30px;">
+      <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12">
+        <h2>{{section.settings.s1_head}}</h2>
+        <p style="color:#949494;">{{section.settings.s1_para}}.</p>
+        <div class="row mt-5">
+          <div class="col-lg-4 col-sm-12 col-md-6 text-center">
+            <img src="{{section.settings.s1_img1 | img_url:'master'}}" class="mb-3" alt="">
+            <h6>{{section.settings.txt1}}</h6>
+          </div>
+          <div class="col-lg-4 col-sm-12 col-md-6  text-center">
+            <img src="{{section.settings.s1_img2 | img_url:'master'}}" class="mb-3" alt="">
+            <h6>{{section.settings.txt2}}</h6>
+          </div>
+          <div class="col-lg-4 col-sm-12 col-md-6 text-center">
+            <img src="{{section.settings.s1_img3 | img_url:'master'}}" class="mb-3" alt="">
+            <h6>{{section.settings.txt3}}</h6>
           </div>
         </div>
-
-            <div class="hs-sec3-right">
-               
-              <ul>
-                <li>
-                  <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0105/1810/2071/t/6/assets/pf-5b30d1d5--Somelos2.jpg" class="image-di">
-                    <span>Portugal</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="https://cdn.shopify.com/s/files/1/0105/1810/2071/files/aesdl.jpg" class="image-di">
-                    <span>Rumænien</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-
+        <div class="row mt-5">
+          <div class="col-lg-4 col-sm-12 col-md-6 col-xs-12 text-center">
+            <img src="{{section.settings.s1_img4 | img_url:'master'}}" class="mb-3" alt="">
+            <h6>{{section.settings.txt4}}</h6>
           </div>
+          <div class="col-lg-4 col-sm-12 col-md-6 col-xs-12 text-center">
+            <img src="{{section.settings.s1_img5 | img_url:'master'}}" class="mb-3" alt="">
+            <h6>{{section.settings.txt5}}</h6>
+          </div>
+          <div class="col-lg-4 col-sm-12 col-md-6 col-xs-12 text-center">
+            <img src="{{section.settings.s1_img6 | img_url:'master'}}" class="mb-3" alt="">
+            <h6>{{section.settings.txt6}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12 text-center">
+        <img src="{{section.settings.right_img | img_url:'master'}}" style="width:100%" alt="">
+      </div>
+    </div>
   </div>
-          
-  <div id="insta-feed"></div>
-</div>
+</section>
+<section style="background-image: url('{{section.settings.s2_bgimg | img_url:'master'}}');">
+  <div class="container">
+    <div class="row align-items-center" style="padding-top:50px;padding-bottom:50px;">
+      <div class="col-lg-6 col-sm-12 col-md-6 col-xs-12 text-white">
+        <div class="row mt-5">
+          <div class="col-lg-3">
+            <img src="{{section.settings.s2_img1 | img_url:'master'}}" alt="">
+          </div>
+          <div class="col-lg-3">
+            <p style="font-size: 13px;">{{section.settings.s2_p1}}</p>
+            <p style="font-size:12px;">{{section.settings.s2_t1}}
+            </p>
+          </div>
+          <div class="col-lg-3">
+            <img src="{{section.settings.s2_img2 | img_url:'master'}}" alt="">
+          </div>
+          <div class="col-lg-3">
+            <p style="font-size: 13px;">{{section.settings.s2_p2}}</p>
+            <p style="font-size:12px;">{{section.settings.s2_t2}}</p>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-lg-3 col-md-3 col-sm-6">
+            <img src="{{section.settings.s2_img3 | img_url:'master'}}" alt="">
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6">
+            <p style="font-size: 13px;">{{section.settings.s2_p3}}</p>
+            <p style="font-size:12px;">{{section.settings.s2_t3}}</p>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6">
+            <img src="{{section.settings.s2_img4 | img_url:'master'}}" alt="">
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6">
+            <p style="font-size: 13px;">{{section.settings.s2_p4}}</p>
+            <p style="font-size:12px;margin-bottom: 6px;">{{section.settings.s2_t4}}</p>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+        <img src="{{section.settings.s2_right | img_url:'master'}}" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-white">
+  <div class="container">
+    <div class="row align-items-center" style="padding-top:50px;padding-bottom:50px;">
+      <div class="col-lg-6">
+        <h1>{{section.settings.s3_head}}</h1>
+        <p style="width: 60%;color: #949494;">{{section.settings.s3_para}}</p>
+        <button class="btn btn-outline-dark text-uppercase">{{section.settings.s3_btntxt}}</button>
+      </div>
+      <div class="col-lg-6 text-center">
+        <img src="{{section.settings.s3_right | img_url:'master'}}" style="width:100%" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pt-5" style="background-image: url('{{"Get_Yours_BG_2048x.png" | asset_url}}');padding-top:50px;padding-bottom:50px;">
+  <div class="container">
+    <div class="row justify-content-center" style="padding-top:50px;padding-bottom:50px;">
+      <div class="col-lg-10 text-center">
+        <h1 class="text-white">GET YOUR BLACKPODS<br>TODAY</h1>
+        <div class="row mt-5">
+          <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6 p-5" style="background: #F8F8F8;">
+            <div id="carouselExampleControls" class="carousel slide bg-white" data-ride="carousel">
+              <div class="carousel-inner text-center">{% for image in product.images %}
+                <div class="carousel-item{% if forloop.first %} active{% endif %}" {% for variant in image.variants %}data-variant="{{ variant.title | split: ' / ' | first }}"{% endfor %}>
+                  <img src="{{ image | img_url: 'original' }}" style="width:100%" alt="...">
+                </div>{% endfor %}
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 py-5" style="background: #ededed; text-align: left !important;">
+            <h4 class="text-dark">{{product.title}}</h4>
+            <div class="text-dark" id="productprice">{{ product.price | money }}</div>
+            {%- form 'product', product, class:'product-form' -%}
+            <div class="row mt-5">
+              <div class="col-6">
+                {%- for option in product.options -%}{%- if option == 'Farve' -%}{%- include 'swatch' with option -%}{%- endif -%}{%- endfor -%}
+                <select name="id" id="productSelect" style="display:none;">{%- for variant in product.variants -%}{%- if variant.available -%}<option{% if variant == product.selected_or_first_available_variant %} selected="selected"{% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>{%- else -%}<option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>{%- endif -%}{%- endfor -%}</select>
+              </div>
+              <div class="col-6">
+                <label for="quantity">Quantity</label>
+                <input type="number" name="quantity" class="form-control" id="quantity" value="1" min="1">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6">
+                <button type="submit" id="addtocart" class="btn btn-block btn-outline-success addcart">ADD TO CART</button>
+              </div>
+              <div class="col-6">
+                <button type="submit" class="btn btn-block btn-outline-dark">Buy Now</button>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <img src="{{'shipping-info_1024x.png' | asset_url}}" alt="">
+              </div>
+            </div>
+            {%- endform -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section style="margin-top: 100px;padding-bottom: 100px;">
+  <div class="container">
+    <div class="row">
+      <div class="border col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <img src="{{'EJU8hSenw.jpg' | asset_url}}" style="width: 100%;" alt="">
+        <p class="px-2 pt-2">Gabriella N.</p>
+        <div class="block stars px-2">
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+        </div>
+        <p class="px-2 pb-2">Really nice pairs and come with a lot of thing together</p>
+        <div class="px-2 pt-2" style="border-top:1px solid lightgray;">
+          <img src="{{'BlackPods_3_Image_x50.png' | asset_url}}" alt="">
+          <span style="font-size:13px;">BlackPods 3 With Wireless Charging Case</span>
+        </div>
+      </div>
+      <div class="border col-lg-3 col-md-6 col-sm-12 col-xs-12" >
+        <img src="{{'N1YVy8XjD.jpg' | asset_url}}" style="width: 100%;" alt="">
+        <p class="px-2 pt-2">William V.</p>
+        <div class="block stars px-2">
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+        </div>
+        <p class="px-2 pb-2">I ordered from another company that promised quick shipping but never got them. I wasn't going to make the same mistake again but i got a weird guarantee from customer service lol. Sure enough, got them 2 days later to Houston! Pods
+          are bomb af, only thing I hate is that the matte texture picks up fingerprints like a mofo</p>
+        <div class="px-2 pt-2" style="border-top:1px solid lightgray;">
+          <img src="{{'BlackPods_3_Image_x50.png' | asset_url}}" alt="">
+          <span style="font-size:13px;">BlackPods 3 With Wireless Charging Case</span>
+        </div>
+      </div>
+      <div class="border col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <img src="{{'VyO4v5N5w.jpg' | asset_url}}" style="width: 100%;" alt="">
+        <p class="px-2 pt-2">Connor D.</p>
+        <div class="block stars px-2">
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+        </div>
+        <p class="px-2 pb-2">They are a great pair of wireless earbuds I have owned AirPods before and they compare beautifully to them the only thing apple AirPods have on them is their case it’s a little light and feels like it’s not as durable but for $50 they
+          are perfect they also shipped in 4 days counting the day I ordered them</p>
+        <div class="px-2 pt-2" style="border-top:1px solid lightgray;">
+          <img src="{{'BlackPods_3_Image_x50.png' | asset_url}}" alt="">
+          <span style="font-size:13px;">BlackPods 3 With Wireless Charging Case</span>
+        </div>
+      </div>
+      <div class="border col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <img src="{{'EynGgwVTx9w.jpg' | asset_url}}" style="width: 100%;" alt="">
+        <p class="px-2 pt-2">Margarette E</p>
+        <div class="block stars px-2">
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+          <i class="fa star fa-star"></i>
+        </div>
+        <p class="px-2 pb-2">After seeing ads for a month of so I decided to fold and buy a pair and Im glad I did. This company doesnt disappoint!</p>
+        <div class="px-2 pt-2" style="border-top:1px solid lightgray;">
+          <img src="{{'BlackPods_3_Image_x50.png' | asset_url}}" alt="">
+          <span style="font-size:13px;">BlackPods 3 With Wireless Charging Case</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% schema %}
   {
-    "name": "Section Product",
-    "settings": []
+    "name": "Custom Product Page",
+    "settings": [
+        {
+          "type": "text",
+          "id": "video",
+		  "label" : "VIDEO"
+        },
+        {
+          "type": "text",
+          "id": "sub",
+		  "label" : "Sub Heading",
+          "default": "MADE FOR EVERYTHING"
+        },
+        {
+          "type": "textarea",
+          "id": "head",
+		  "label" : "Heading",
+          "default": "HOME OF THE ORIGINAL BLACKPODS"
+        },
+        {
+          "type": "textarea",
+          "id": "para",
+		  "label" : "Text",
+          "default": "Based on our own pod concept, featuring Bluetooth 5.0 for lightning fast connectivity, a brand new H1 Chipset for more power efficiency and IPX6 resistance."
+        },
+        {
+          "type": "text",
+          "id": "btn_txt",
+		  "label" : "Button Text",
+          "default": "SEE REVIEWS"
+        },
+        {
+          "type": "image_picker",
+          "id": "img1",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "span_txt1",
+		  "label" : "Button Text",
+          "default": "SEE REVIEWS"
+        },
+        {
+          "type": "image_picker",
+          "id": "img2",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "span_txt2",
+		  "label" : "Button Text",
+          "default": "SEE REVIEWS"
+        },
+        {
+          "type": "image_picker",
+          "id": "img3",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "span_txt3",
+		  "label" : "Button Text",
+          "default": "SEE REVIEWS"
+        },
+        {
+          "type": "image_picker",
+          "id": "img4",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "span_txt4",
+		  "label" : "Button Text",
+          "default": "SEE REVIEWS"
+        },
+        {
+          "type": "text",
+          "id": "s1_head",
+		  "label" : "Section Heading",
+          "default": "BLACKPODS™ IN DETAILS"
+        },
+        {
+          "type": "textarea",
+          "id": "s1_para",
+		  "label" : "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "s1_img1",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "txt1",
+		  "label" : "Image Caption",
+          "default": "BLUETOOTH 5.0"
+        },
+        {
+          "type": "image_picker",
+          "id": "s1_img2",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "txt2",
+		  "label" : "Image Caption",
+          "default": "DOUBLE-EAR WIRELESS"
+        },
+        {
+          "type": "image_picker",
+          "id": "s1_img3",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "txt3",
+		  "label" : "Image Caption",
+          "default": "DOUBLE-EAR WIRELESS"
+        },
+        {
+          "type": "image_picker",
+          "id": "s1_img4",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "txt4",
+		  "label" : "Image Caption",
+          "default": "CHARGE FUNCTION"
+        },
+        {
+          "type": "image_picker",
+          "id": "s1_img5",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "txt5",
+		  "label" : "Image Caption",
+          "default": "ONE-TAP KEY CONTROLS"
+        },
+        {
+          "type": "image_picker",
+          "id": "s1_img6",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "txt6",
+		  "label" : "Image Caption",
+          "default": "BASS BALANCE TECHNOLOGY"
+        },
+        {
+          "type": "image_picker",
+          "id": "right_img",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "s2_bgimg",
+          "label": "Section Background image"
+        },
+        {
+          "type": "image_picker",
+          "id": "s2_img1",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "s2_p1",
+		  "label" : "Heading",
+          "default": "24 Hour Battery"
+        },
+        {
+          "type": "textarea",
+          "id": "s2_t1",
+		  "label" : "Caption"
+        },
+        {
+          "type": "image_picker",
+          "id": "s2_img2",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "s2_p2",
+		  "label" : "Heading",
+          "default": "Truly Wireless"
+        },
+        {
+          "type": "textarea",
+          "id": "s2_t2",
+		  "label" : "Caption"
+        },
+        {
+          "type": "image_picker",
+          "id": "s2_img3",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "s2_p3",
+		  "label" : "Heading",
+          "default": "Studio Quality"
+        },
+        {
+          "type": "textarea",
+          "id": "s2_t3",
+		  "label" : "Caption"
+        },
+        {
+          "type": "image_picker",
+          "id": "s2_img4",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "s2_p4",
+		  "label" : "Heading",
+          "default": "What's Included"
+        },
+        {
+          "type": "textarea",
+          "id": "s2_t4",
+		  "label" : "Caption"
+        },
+        {
+          "type": "image_picker",
+          "id": "s2_right",
+          "label": "Right Image"
+        },
+        {
+          "type": "text",
+          "id": "s3_head",
+		  "label" : "Section Heading",
+          "default": "The full future for half the cost"
+        },
+        {
+          "type": "textarea",
+          "id": "s3_para",
+		  "label" : "Section Description"
+        },
+        {
+          "type": "text",
+          "id": "s3_btntxt",
+		  "label" : "Section Heading",
+          "default": "buy it now $59.95"
+        },
+        {
+          "type": "image_picker",
+          "id": "s3_right",
+          "label": "Right Image"
+        }
+
+]
   }
 {% endschema %}
-
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script>
-  var selectCallback = function(variant, selector) {
-    if (variant) {
-      if (variant.available) {
-        $('#addtocart').html('Add to Cart'); $('.addcart').removeClass('disabled').removeAttr('disabled');
-      } else {
-        $('#addtocart').html('Sold Out'); $('.addcart').addClass('disabled').attr('disabled', 'disabled');        
-      }
-      if ( variant.compare_at_price > variant.price ) {
-        $('#productprice').html('<span class="price on-sale money">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") +'</span>'+'&nbsp;<s class="compare-price money">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}")+ '</s>');
-      } else {
-        $('#productprice').html('<span class="price money">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + '</span>' );
-      }        
-    } else {
-      $('#addtocart').html('Unavailable'); $('.addcart').addClass('disabled').attr('disabled', 'disabled');
-    }
-  };
-  jQuery(function($) {
+  $(document).ready(function() {
     new Shopify.OptionSelectors('productSelect', {
       product: {{ product | json }},
       onVariantSelected: selectCallback,
@@ -193,14 +539,5 @@
     $('.selector-wrapper').hide();
     {% endif %}
     $('.selector-wrapper').append('<div class="clearfix"></div>');
-  });
-  jQuery(function() {
-    $('.swatch :radio').change(function() {
-      var optionIndex = $(this).closest('.swatch').attr('data-option-index');
-      var optionValue = $(this).val();
-      $(this).closest('form').find('.single-option-selector').eq(optionIndex).val(optionValue).trigger('change');
-      var variantIndex = $('.slick-slider .slick-slide').find("li[data-variant="+optionValue+"]").parents('.slick-slide').data("slick-index");
-      $('.slick-slider').slick('goTo', variantIndex);
-    });
   });
 </script>
